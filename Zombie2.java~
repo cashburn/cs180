@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+public class Zombie {
+    private static ArrayList<Zombie> list = new ArrayList<Zombie>();
+    Zombie(String name) {
+        list.add(this);
+        
+    }
+    
+    private static int getCount() {
+        return list.size();
+    }
+    
+    public 
+    
+    static void printStatus() {
+        System.out.println("Zombies created so far: " + getCount());
+    }
+    
+    void printZombie() {
+        System.out.println(name + " is zombie " + serial);
+    }
+}
