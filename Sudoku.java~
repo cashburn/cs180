@@ -141,11 +141,7 @@ public class Sudoku {
                 }
             }
         }
-        boolean solved = false; //trying a workaround...
-        solved = brow;
-        solved = bcolumn && solved;
-        solved = bbox && solved;
-        return solved;
+        return brow && bcolumn && bbox;
     }
     private boolean checkZeroToNine(int[] array) {
         boolean[] check = new boolean[10];
@@ -215,7 +211,7 @@ public class Sudoku {
                     int v = isNakedSingle(candidates);
                     if (v != 0) {
                         board[i][j] = v;
-                        //System.out.println("Naked Single");
+                        System.out.println("Naked Single");
                         return true;
                     }
                 }
@@ -252,7 +248,7 @@ public class Sudoku {
                                 checkIfFalse(boxCandidates, c)) {
                                 board[i][j] = c;
                                 //printState();
-                                //System.out.println("Hidden Single");
+                                System.out.println("Hidden Single");
                                 return true;
                             }
                         }

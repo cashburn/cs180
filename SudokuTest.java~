@@ -1,6 +1,6 @@
 import junit.framework.TestCase;
 import java.util.Arrays;
-
+import java.io.*;
 public class SudokuTest extends TestCase {
     private int[][] puzzleOneBoard = { { 0, 9, 7, 5, 0, 1, 8, 0, 0 }, 
         { 8, 0, 0, 0, 2, 0, 0, 0, 0 },
@@ -75,6 +75,27 @@ public class SudokuTest extends TestCase {
         { 0, 0, 0, 0, 0, 0, 0, 0, 0},
         { 0, 0, 0, 0, 0, 0, 0, 0, 0},
         { 0, 0, 0, 0, 0, 0, 0, 0, 0} };
+    public void testMain01() {
+        ByteArrayOutputStream outcontent = new ByteArrayOutputStream();
+        ByteArrayInputStream in = new ByteArrayInputStream(puzzleThreeString.getBytes());
+        System.setOut(new PrintStream(outcontent));
+        System.setIn(in);
+        Sudoku.main(new String[]{puzzleThreeString});
+        assertTrue(outcontent.toString().indexOf("| 2 3 1 | 4 8 6 | 7 9 5 |") != -1);
+        
+        
+    }
+    public void testMain02() {
+        ByteArrayOutputStream outcontent = new ByteArrayOutputStream();
+        ByteArrayInputStream in = new ByteArrayInputStream(puzzleThreeString.getBytes());
+        System.setOut(new PrintStream(outcontent));
+        System.setIn(in);
+        Sudoku.main(new String[]{});
+        assertTrue(outcontent.toString().indexOf("| 2 3 1 | 4 8 6 | 7 9 5 |") != -1);
+    }
+    public void testMain() {
+        //Sudoku.main(
+    }
     //the created board should be identical to the array representation above
     public void testBoard() {
         Sudoku sud = new Sudoku(puzzleOneString);
