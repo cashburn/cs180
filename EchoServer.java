@@ -6,6 +6,7 @@ public class EchoServer implements Runnable {
     final Socket socket;
     static int port;
     public EchoServer(Socket socket) {
+        port = 4242;
         this.socket = socket;
     }
     
@@ -28,7 +29,7 @@ public class EchoServer implements Runnable {
         }
     }
     public static void main(String[] args) throws IOException {
-        ServerSocket serverSocket = new ServerSocket(port);
+        ServerSocket serverSocket = new ServerSocket(4242);
         System.out.printf("socket open, waiting for connections on %s%n", serverSocket);
         while (true) {
             Socket socket = serverSocket.accept();
