@@ -41,12 +41,10 @@ public class SafeWalkServer implements Runnable {
         }
     }
     public void input() {
-        boolean done = false;
         try {
             PrintWriter pw = new PrintWriter(currentSocket.getOutputStream());
             BufferedReader in = new BufferedReader(new InputStreamReader(currentSocket.getInputStream()));
             String line;
-            //while (((line = in.readLine()) != null) && !done) {
             line = in.readLine();
                 if (line.equals(":LIST_PENDING_REQUESTS")) {
                     String output = "[";
@@ -64,7 +62,6 @@ public class SafeWalkServer implements Runnable {
                     pw.flush();
                 }
                 else if (line.equals(":RESET")) {
-                    done = true;
                     while (requests.size() > 0 || sockets.size() > 0) {
                         
                         
@@ -94,7 +91,6 @@ public class SafeWalkServer implements Runnable {
                 }
                 else if (line.equals(":SHUTDOWN")) {
                     System.out.println("Shutdown");
-                    done = true;
                     while (requests.size() > 0 || sockets.size() > 0) {
                         
                             pw.println("RESPONSE: success");
@@ -127,7 +123,7 @@ public class SafeWalkServer implements Runnable {
                     System.out.println(line);
                     if (isCorrect(temp)) {
                         for (int i = 0; i < requests.size(); i++) {
-                            if (requests.get(i)[1].equals(temp[1]) && (!(requests.get(i)[1].equals("*") && temp[1].equals("*"))) && (n == -1))
+                            if (requests.get(i)[1].equals(temp[1]) && (!(requests.get(i)[2].equals("*") && temp[2].equals("*"))) && (n == -1))
                                 if (requests.get(i)[2].equals(temp[2]) || requests.get(i)[2].equals("*") || temp[2].equals("*"))
                                     n = i;
                         }
@@ -136,15 +132,15 @@ public class SafeWalkServer implements Runnable {
                         
                         else {
                             pw.println("RESPONSE: " + toString(requests.get(n)));
-                            if (requests.size() > 0)
-                                requests.remove(requests.size() - 1);
+                            //if (requests.size() > 0)
+                                //requests.remove(requests.size() - 1);
                             pw.flush();
                             pw.close();
                             sockets.get(sockets.size() - 1).close();
                             sockets.remove(sockets.size() - 1);
                             PrintWriter pw2 = new PrintWriter(sockets.get(n).getOutputStream());
                             pw2.println("RESPONSE: " + line);
-                            if (requests.size() > 1)
+                            if (requests.size() > 0)
                                 requests.remove(n);
                             else if (requests.size() > 0)
                                 requests.remove(0);
@@ -153,7 +149,6 @@ public class SafeWalkServer implements Runnable {
                             sockets.get(n).close();
                             sockets.remove(n);
                         }
-                        done = true;
                     }
                     else {
                         pw.println("ERROR: invalid request");
@@ -170,7 +165,6 @@ public class SafeWalkServer implements Runnable {
                 }*/
             
             if (exit) {
-                done = true;
                 System.out.println("exit=true");
                 pw.close();
                 in.close();
