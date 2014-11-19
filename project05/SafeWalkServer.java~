@@ -26,9 +26,12 @@ public class SafeWalkServer implements Runnable {
     
     public void run() {
         try {
+            //ServerSocket serverSocket = new ServerSocket(port);
+            System.out.println(serverSocket);
             while (!exit) {
                 currentSocket = serverSocket.accept();
                 sockets.add(currentSocket);
+                System.out.println(currentSocket);
                 input();
             }
             serverSocket.close();
@@ -49,6 +52,10 @@ public class SafeWalkServer implements Runnable {
                         output += "[" + toString1(requests.get(i));
                          if (i < (requests.size() - 1))
                              output += "], ";
+                         //else
+                             //output += "]";
+                        
+                        System.out.println(toString(requests.get(i)));
                     }
                     output += "]]";
                     pw.println(output);
@@ -79,13 +86,17 @@ public class SafeWalkServer implements Runnable {
                                 requests.remove(0);
                             sockets.remove(0);
                     }
+                    
+                    //break;
                 }
                 else if (line.equals(":SHUTDOWN")) {
+                    System.out.println("Shutdown");
                     while (requests.size() > 0 || sockets.size() > 0) {
                         
                             pw.println("RESPONSE: success");
                             pw.flush();
 
+                        //else {
                             if (!(currentSocket == sockets.get(0))) {
                             try {
                                 PrintWriter pw2 = new PrintWriter(sockets.get(0).getOutputStream());
@@ -104,10 +115,12 @@ public class SafeWalkServer implements Runnable {
                             sockets.remove(0);
                     }
                     exit = true;
+                    //break;
                 }
                 else {
                     int n = -1;
                     String[] temp = fromString(line);
+                    System.out.println(line);
                     if (isCorrect(temp)) {
                         for (int i = 0; i < requests.size(); i++) {
                             if (requests.get(i)[1].equals(temp[1]) && (!(requests.get(i)[2].equals("*") && temp[2].equals("*"))) && (n == -1))
@@ -119,15 +132,18 @@ public class SafeWalkServer implements Runnable {
                         
                         else {
                             pw.println("RESPONSE: " + toString(requests.get(n)));
+                            //if (requests.size() > 0)
+                                //requests.remove(requests.size() - 1);
                             pw.flush();
                             pw.close();
-                            in.close();
                             sockets.get(sockets.size() - 1).close();
                             sockets.remove(sockets.size() - 1);
                             PrintWriter pw2 = new PrintWriter(sockets.get(n).getOutputStream());
                             pw2.println("RESPONSE: " + line);
                             if (requests.size() > 0)
                                 requests.remove(n);
+                            else if (requests.size() > 0)
+                                requests.remove(0);
                             pw2.flush();
                             pw2.close();
                             sockets.get(n).close();
@@ -137,15 +153,27 @@ public class SafeWalkServer implements Runnable {
                     else {
                         pw.println("ERROR: invalid request");
                         pw.flush();
+                        System.out.println("ERROR: invalid request");
                     }   
                 }
+                    
+                
+                /*else {
+                    System.out.printf("&s says: %s%n", currentSocket);
+                    pw.printf("echo: %s%n", line);
+                    pw.flush();
+                }*/
             
             if (exit) {
+                System.out.println("exit=true");
                 pw.close();
                 in.close();
                 currentSocket.close();
             }
+            
+            System.out.println("Now?");
         } catch (IOException e) {
+            System.out.println("Error!!!");
         }
         
     }
@@ -202,9 +230,13 @@ public class SafeWalkServer implements Runnable {
         String[] output = new String[4];
         while (input.contains(",")) {
             end = input.indexOf(',');
+            System.out.println(end);
             output[i] = input.substring(0,end);
+            System.out.println(output[i]);
             input = input.substring(end + 1);
             beg = end;
+            System.out.println(input);
+            System.out.println(i);
             i++;
         }
         output[3] = input;
@@ -218,15 +250,13 @@ public class SafeWalkServer implements Runnable {
                 i = Integer.parseInt(args[0]);
                 server = new SafeWalkServer(i);
             }
-            catch(NumberFormatException|BindException b) {
-                System.out.println("Incorrect port specification.");
-                return;
+            catch(NumberFormatException e) {
+                server = new SafeWalkServer();
             }
         }
-        else {
+        else
             server = new SafeWalkServer();
-            System.out.printf("Port not specified. Using free port %s%n",server.port);
-        }
+        System.out.println(server.port);
         server.run();
     }
 }
