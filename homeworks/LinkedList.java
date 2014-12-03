@@ -1,4 +1,5 @@
-public class LinkedList {
+import java.util.Iterator;
+public class LinkedList implements Iterable {
     private Node head;
     private Node tail;
     private int size;
@@ -40,5 +41,23 @@ public class LinkedList {
             n = n.link;
         }
         return a;
+    }
+    public Iterator iterator() {
+        return new Iterator() {
+            Node current = head;
+ 
+            public boolean hasNext() {
+                return current != null;
+            }
+ 
+            public String next() {
+                Node t = current;
+                current = current.link;
+                return t.value;
+            }
+ 
+            public void remove() {
+            }
+        };
     }
 }

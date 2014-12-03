@@ -1,7 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-
+import java.util.Iterator;
 public class ProcessFile {
     public static void main(String[] args) throws FileNotFoundException {
         LinkedList list = new LinkedList();
@@ -12,8 +12,9 @@ public class ProcessFile {
         }
 
         System.out.printf("read %d lines\n", list.getSize());
-        String[] array = list.toArray();
-        for (int i = 0; i < 10; i++)
-            System.out.println(array[i]);
+        //String[] array = list.toArray();
+        //Iterator<String> i = list.iterator();
+        for (Object string : list)
+            System.out.println((String) string);
     }
 }
