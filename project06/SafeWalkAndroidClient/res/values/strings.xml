@@ -6,9 +6,31 @@
     <string name="submit">Submit</string>
     <string name="match">Match</string>
     <string name="start_over">Start Over</string>
-    <string name="default_host">10.0.2.2</string>
-    <string name="default_port">8888</string>
+    <string name="default_host">10.0.0.49</string>
+    <string name="default_port">4242</string>
     <string name="default_command">:FAKE_COMMAND</string>
     <string name="host">Host</string>
     <string name="port">Port</string>
+    <string name="name">Name</string>
+    <string name="to">To</string>
+    <string name="from">From</string>
+    <string name="radio_requester">I am a requester. Match me with volunteers only.</string>
+    <string name="radio_volunteer">I am a volunteer. Don\'t match me with other volunteers.</string>
+    <string name="radio_either">I have no preference being a requester or volunteer.</string>
+    <string name="partner">Partner</string>
+    <string-array name="locations_array1">
+        <item>CL50-Class of 1950 Lecture Hall</item>
+        <item>EE-Electrical Engineering Building</item>
+        <item>LWSN-Lawson Computer Science Building</item>
+        <item>PMU-Purdue Memorial Union</item>
+        <item>PUSH-Purdue University Student Health Center</item>
+        <item>No preference</item>
+    </string-array>
+    <string-array name="locations_array2">
+        <item>CL50-Class of 1950 Lecture Hall</item>
+        <item>EE-Electrical Engineering Building</item>
+        <item>LWSN-Lawson Computer Science Building</item>
+        <item>PMU-Purdue Memorial Union</item>
+        <item>PUSH-Purdue University Student Health Center</item>
+    </string-array>
 </resources>

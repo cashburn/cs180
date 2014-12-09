@@ -6,22 +6,88 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="edu.purdue.YL.MainActivity" >
-
-    <!-- TODO your layout here -->
+    tools:context="edu.purdue.cashburn.MainActivity" >
 
     <Button
         android:id="@+id/bu_start_over"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/margin_bigline"
+        android:layout_marginBottom="44dp"
+        android:background="@color/salmon"
         android:gravity="center"
         android:minHeight="60dp"
         android:minWidth="150dp"
         android:padding="@dimen/padding"
-        android:background="@color/salmon"
         android:text="@string/start_over"
         android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/match_partner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/bu_start_over"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="118dp"
+        android:layout_marginLeft="36dp"
+        android:text="@string/partner"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/match_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/match_partner"
+        android:layout_alignTop="@+id/match_partner"
+        android:layout_marginTop="42dp"
+        android:text="@string/from"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/match_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/match_from"
+        android:layout_below="@+id/match_from"
+        android:layout_marginTop="20dp"
+        android:text="@string/to"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/match_partner_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/match_partner"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/match_from_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/match_from"
+        android:layout_alignLeft="@+id/match_partner_result"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/match_to_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/match_from_result"
+        android:layout_alignTop="@+id/match_to"
+        android:text="Medium Text"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/log"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/match_partner"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
