@@ -18,6 +18,7 @@ public class Tree {
     }
     
     private static class Node {
+        int count = 1;
         String value;
         Node left = null;
         Node right = null;
@@ -41,6 +42,8 @@ public class Tree {
         // right recursive case
         else if (value.compareTo(tree.value) > 0)
             tree.right = add(value, tree.right);
+        else if (value.compareTo(tree.value) == 0)
+            tree.count++;
         return tree;
     }
 
@@ -52,7 +55,7 @@ public class Tree {
     private static void print(Node tree) {
         if (tree != null) {
             print(tree.left);
-            System.out.println(tree.value);
+            System.out.println(tree.value + " - " + tree.count);
             print(tree.right);
         }
     }
