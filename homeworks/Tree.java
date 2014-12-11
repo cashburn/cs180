@@ -55,7 +55,7 @@ public class Tree {
     private static void print(Node tree) {
         if (tree != null) {
             print(tree.left);
-            System.out.println(tree.value + " - " + tree.count);
+            System.out.println(tree.value + " " + tree.count);
             print(tree.right);
         }
     }
